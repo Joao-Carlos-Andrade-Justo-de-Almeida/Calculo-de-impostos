@@ -21,5 +21,5 @@ public abstract class Pessoa {
     public void setRenda_anual(Double renda_anual) {
         this.renda_anual = renda_anual;
     }
-    public abstract String tax();
+    public abstract double tax();
 }

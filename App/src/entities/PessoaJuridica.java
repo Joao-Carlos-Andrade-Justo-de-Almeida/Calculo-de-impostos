@@ -2,8 +2,8 @@ package entities;
 
 public class PessoaJuridica extends Pessoa {
     private Integer funcionario;
-    private static final double TAXA_DEZESSEIS = 16.0;
-    private static final double TAXA_FUNCIONARIOS = 14.0;
+    private static final double TAXA_DEZESSEIS = 0.16;
+    private static final double TAXA_FUNCIONARIOS = 0.14;
 
     
 
@@ -28,20 +28,14 @@ public class PessoaJuridica extends Pessoa {
         return TAXA_FUNCIONARIOS;
     }
 
-    public double taxaImpostoJuridico(){
-        return getRenda_anual() * (getTaxaDezesseis() / 100);
-    }
-
-    public double taxaImpostoFuncionario(){
-        return getRenda_anual() * (getTaxaFuncionarios() / 100);
-    }
-
-    public double totalJuridica(){
-        return taxaImpostoJuridico() + taxaImpostoFuncionario();
-    }
-
     @Override
-    public String tax(){
-        return getNome() + ": $ " + totalJuridica();
+    public double tax(){
+        // Verifica o número de funcionários e aplica a taxa correspondente.
+        if(funcionario>10){
+            return getRenda_anual() * TAXA_FUNCIONARIOS; // Aplica TAXA_FUNCIONARIOS se o número de funcionários for maior que 10.
+        }
+        else{
+            return getRenda_anual() * TAXA_DEZESSEIS; // Aplica TAXA_DEZESSEIS se o número de funcionários for 10 ou menos.
+        }
     }
 }

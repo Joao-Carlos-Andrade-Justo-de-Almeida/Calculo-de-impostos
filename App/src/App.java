@@ -44,18 +44,20 @@ public class App {
         }
         System.out.println();
         System.out.println("Valores de taxas paga: ");
+        // Exibe o nome da pessoa e o valor do imposto formatado com duas casas decimais.
         for(Pessoa ps:list){
-            System.out.println(ps.tax());
+            System.out.println(ps.getNome() + "$ " + String.format("%.2f", ps.tax()));
         }
         System.out.println();
 
         double somaImpostos = 0.0;
 
+        // Soma o imposto de cada pessoa ao total acumulado.
         for (Pessoa ps : list) {
-            somaImpostos += ps.getRenda_anual();
+            somaImpostos += ps.tax();
         }
         sc.close();
 
-        System.out.printf("Total de impostos pagos: R$ %.2f%n", somaImpostos);
+        System.out.printf("Total de impostos pagos: R$ %.2f%n ", somaImpostos);
     }
 }
